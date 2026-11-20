@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Choices.js CSS for enhanced select dropdowns -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+</head>
+<body>
+    <!-- Background Video Element -->
+    <video autoplay muted loop playsinline id="bgVideo">
+        <source src="video.mp4" type="video/mp4" />
+    </video>
+    
+    <!-- Form Background Overlay (if needed for additional styling) -->
+    <div class="form-bg-overlay"></div>
+    
+    <!-- Main Currency Converter Card -->
+    <div class="converter-card" role="main" aria-label="Currency converter">
+        <h1>Currency Converter</h1>
+        
+        <!-- Currency Conversion Form -->
+        <form id="converterForm" autocomplete="off">
+            <!-- Amount Input Section -->
+            <div class="form-row">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" placeholder="Enter amount" min="1" max="1000000000" step="any" aria-required="true" />
+            </div>
+            
+            <!-- Currency Selection Section -->
+            <div class="form-row">
+                <!-- From Currency Selector -->
+                <div class="half">
+                    <label for="fromCurrency">From</label>
+                    <select id="fromCurrency" aria-required="true" aria-label="From currency"></select>
+                </div>
+                
+                <!-- Swap Currencies Button -->
+                <button type="button" class="swap-btn" id="swapBtn" aria-label="Swap currencies" title="Swap currencies">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                    </svg>
+                </button>
+                
+                <!-- To Currency Selector -->
+                <div class="half">
+                    <label for="toCurrency">To</label>
+                    <select id="toCurrency" aria-required="true" aria-label="To currency"></select>
+                </div>
+            </div>
+            
+            <!-- Convert Button Section -->
+            <div class="form-row center">
+                <button type="button" id="convertBtn" aria-label="Convert currencies" class="convert-btn">Convert</button>
+            </div>
+            
+            <!-- Results Display Section -->
+            <div class="result" id="result" aria-live="polite"></div>
+            <div class="rate-info" id="rateInfo" aria-live="polite"></div>
+            <div class="error" id="error" aria-live="assertive"></div>
+        </form>
+        
+        <!-- Conversion History Section -->
+        <section class="history" aria-label="Conversion history">
+            <h2>Conversion History</h2>
+            <ul id="historyList"></ul>
+        </section>
+    </div>
+    
+    <!-- External JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

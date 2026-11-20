@@ -1,0 +1,447 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* Global Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling with Background Gradient */
+body {
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 25%, #3b82f6 50%, #60a5fa 75%, #93c5fd 100%);
+  color: white;
+  position: relative;
+  transition: all 0.4s ease;
+  padding: 20px;
+}
+
+/* Background Video Styling */
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.6; /* Adjust video opacity for better readability */
+}
+
+/* Dark Overlay for Better Text Readability */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  z-index: -1;
+}
+
+/* Main Converter Card Styling */
+.converter-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.021); /* FIXED: Reduced opacity for consistent background */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 1000px;
+  backdrop-filter: blur(20px); /* Glass morphism effect */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  color: white;
+  z-index: 1;
+}
+
+/* Typography Styles */
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for better visibility */
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: white;
+}
+
+/* Form Layout Styles */
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: end; /* Align items to bottom for consistent button placement */
+}
+
+.form-row.center {
+  justify-content: center; /* Center the convert button */
+}
+
+.half {
+  flex: 1;
+  min-width: 200px; /* Minimum width for currency selectors */
+}
+
+/* Label Styling */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+}
+
+/* Input and Select Field Styling */
+input, select {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1); /* FIXED: Consistent with card background */
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+/* Placeholder Text Styling */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Focus States for Input Fields */
+input:focus, select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15); /* Slightly more visible on focus */
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+/* Base Button Styling */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  color: white;
+  transition: all 0.3s ease;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Convert Button Styling */
+.convert-btn {
+  background: rgba(34, 197, 94, 1); /* Green background */
+  padding: 14px 28px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(34, 197, 94, 0.3);
+}
+
+/* Convert Button Hover Effect */
+.convert-btn:hover:not(:disabled) {
+  background: rgb(24, 147, 69); /* Darker green on hover */
+  transform: translateY(-2px); /* Lift effect */
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+}
+
+/* Convert Button Disabled State */
+.convert-btn:disabled {
+  background: rgba(100, 116, 139, 0.5);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Swap Button Styling */
+.swap-btn {
+  background: #3b82f6; /* Blue background */
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  padding: 12px;
+  font-size: 0.85rem;
+  backdrop-filter: blur(10px);
+  border-radius: 50%; /* Circular button */
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Swap Button Hover Effect */
+.swap-btn:hover {
+  background: #2563eb; /* Darker blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Result Display Styling */
+.result {
+  margin-top: 25px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  color: #4ade80; /* Green color for success */
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.3); /* Glow effect */
+  min-height: 1.4rem; /* Prevent layout shift */
+}
+
+/* Rate Information Styling */
+.rate-info {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+/* Error Message Styling */
+.error {
+  margin-top: 20px;
+  color: #ff6b6b; /* Red color for errors */
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.3); /* Red glow effect */
+  min-height: 1.2rem; /* Prevent layout shift */
+}
+
+/* History Section Styling */
+.history {
+  margin-top: 25px;
+  background: rgba(255, 255, 255, 0.05); /* Consistent with main card */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 15px;
+  backdrop-filter: blur(10px);
+}
+
+/* History List Styling */
+.history ul {
+  list-style: none;
+  max-height: 150px;
+  overflow-y: auto; /* Scrollable if content exceeds height */
+}
+
+/* History List Items */
+.history li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.history li:last-child {
+  border-bottom: none; /* Remove border from last item */
+}
+
+/* Custom Scrollbar Styling */
+.history ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history ul::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.history ul::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.history ul::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Choices.js Library Styling Overrides */
+.choices {
+  margin-bottom: 0;
+}
+
+/* Choices.js Input Container */
+.choices__inner {
+  background: rgba(255, 255, 255, 0.1) !important; /* FIXED: Consistent background */
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 10px !important;
+  color: white !important;
+  padding: 12px 15px !important;
+  min-height: auto !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Choices.js Focus State */
+.choices__inner:focus {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Choices.js Dropdown Styling */
+.choices__list--dropdown {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(20px);
+  border-radius: 8px !important;
+  margin-top: 4px !important;
+}
+
+/* Choices.js Dropdown Items */
+.choices__item--choice {
+  background: transparent !important;
+  color: white !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.choices__item--choice:last-child {
+  border-bottom: none !important;
+}
+
+/* Choices.js Highlighted Item */
+.choices__item--choice.is-highlighted {
+  background: rgba(59, 130, 246, 0.8) !important;
+  color: white !important;
+}
+
+/* Choices.js Search Input */
+.choices__input {
+  background: transparent !important;
+  color: white !important;
+  padding: 12px !important;
+  margin: 0 !important;
+  font-size: 1rem !important;
+}
+
+/* Choices.js Placeholder */
+.choices__placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Responsive Design - Tablet and Small Desktop */
+@media (max-width: 768px) {
+  .converter-card {
+    padding: 25px;
+    margin: 10px;
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .form-row {
+    flex-direction: column; /* Stack elements vertically */
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .half {
+    min-width: auto;
+  }
+
+  .convert-btn {
+    max-width: 100%;
+  }
+
+  .swap-btn {
+    align-self: center;
+    margin: 10px 0;
+  }
+}
+
+/* Responsive Design - Mobile Phones */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .converter-card {
+    padding: 20px;
+    max-width: 95%;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  input, select {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .convert-btn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+
+  .swap-btn {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+  }
+
+  .result {
+    font-size: 1.2rem;
+  }
+
+  .rate-info {
+    font-size: 0.8rem;
+  }
+
+  .history {
+    padding: 12px;
+  }
+
+  .history li {
+    font-size: 0.8rem;
+    padding: 8px 0;
+  }
+}
+
+/* Responsive Design - Very Small Screens */
+@media (max-width: 320px) {
+  .converter-card {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  input, select {
+    padding: 8px 10px;
+  }
+
+  .convert-btn {
+    padding: 10px 20px;
+  }
+
+  .swap-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
